@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <ul>
+            {% for andrew in andrews %}
+            <li>
+                {{andrew.first_name}} {{andrew.last_name}} : {{andrew.email}}
+            </li>
+            {% endfor%}
+        </ul>
+
+        {{result}}
+    </body>
+</html>
