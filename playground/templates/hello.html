@@ -8,6 +8,14 @@
             {% endfor%}
         </ul>
 
-        {{result}}
+        <ul>
+            {% for cus in customer %}
+            <li>
+                {{cus.title}} {{cus.total_sales}}
+            </li>
+            {% endfor%}
+        </ul>
+
+        
     </body>
 </html>

@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'playground',
     'store',
     'tags',
+    'debug_toolbar',
+    'likes',
+    'store_custom'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'firstapp.urls'
@@ -104,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+INTERNAL_IPS = ["127.0.0.1"]
 
 
 # Internationalization
