@@ -38,13 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    'rest_framework',
     'playground',
     'store',
     'tags',
     'debug_toolbar',
     'likes',
-    'store_custom',
-    'rest_framework',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False
 }
+
+AUTH_USER_MODEL = 'core.user'
