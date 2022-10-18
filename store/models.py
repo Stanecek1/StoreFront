@@ -6,6 +6,7 @@ from random import choices
 from wsgiref.validate import validator
 from django.db import models
 from django.core.validators import MinValueValidator
+from uuid import uuid4
 
 # Create your models here.
 class Promotion(models.Model):
@@ -83,12 +84,16 @@ class Address(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 class Cart(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4)
     created_at = models.DateField(auto_now_add=True)
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveSmallIntegerField()
+    quantity = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
+
+    class Meta:
+        unique_together = [['cart', 'product']]
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
