@@ -1,5 +1,7 @@
-from requests import request
 from rest_framework import permissions
+
+#used for custom permissions 
+
 
 class IsAdminOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -10,7 +12,6 @@ class IsAdminOrReadOnly(permissions.BasePermission):
 class FullDjangoModelPermissions(permissions.DjangoModelPermissions):
     def __init__(self) -> None:
         self.perms_map['GET'] = ['%(app_label)s.view_%(model_name)s'],
-
 
 class ViewCustomerHistoryPermission(permissions.BasePermission):
     def has_permission(self, request, view):

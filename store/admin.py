@@ -48,7 +48,7 @@ class ProductAdmin(admin.ModelAdmin):
         return product.number_of_orders
 
     def get_queryset(self, request):
-        return super().get_queryset(request).annotate(number_of_orders=Count('orderitem'))
+        return super().get_queryset(request).annotate(number_of_orders=Count('orderitems'))
     
     @admin.action(description='Clear Inventory')
     def clear_inventory(self, request, queryset):

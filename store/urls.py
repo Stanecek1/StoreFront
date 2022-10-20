@@ -1,13 +1,10 @@
-from cgitb import lookup
-from email.mime import base
-from django.urls import path
 from . import views
 from rest_framework_nested import routers
 
 router = routers.DefaultRouter() 
 router.register('products', views.ProductViewSet, basename='products')
 router.register('collections', views.CollectionViewSet)
-router.register('orders', views.OrderViewSet)
+router.register('orders', views.OrderViewSet, basename='orders')
 router.register('customers', views.CustomerViewSet)
 router.register('carts', views.CartViewSet)
 
