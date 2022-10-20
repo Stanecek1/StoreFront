@@ -18,7 +18,14 @@ class InventoryFilter(admin.SimpleListFilter):
         if self.value() == '<10': 
             return queryset.filter(inventory__lt=10)
 
+class ProductImageInline(admin.TabularInline):
+    model = models.ProductImage
+    readonly_fields = ['thumbnail']
 
+    def thumbnail(self, instance):
+        if instance.image.name != '':
+            return format_html(f'<img src="{instance.image.url}"- class="thumbnail" />')
+        return ''
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -30,6 +37,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'unit_price', 'inventory_status', 'collection_title', 'number_of_orders']
     list_editable = ['unit_price']
     list_filter = ['collection', 'last_update', InventoryFilter]
+    inlines = [ProductImageInline]
     ordering = ['title']
     list_per_page = 10
     list_select_related = ['collection']
@@ -57,6 +65,8 @@ class ProductAdmin(admin.ModelAdmin):
             request,
             f'{updated_count} products were successfully updated.',
         )
+    class Media:
+        css = {'all': ['store/styles.css']}
 
 @admin.register(models.Customer)
 class CustomerAdmin(admin.ModelAdmin):
