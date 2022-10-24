@@ -28,7 +28,9 @@ urlpatterns = [
     path('store/', include('store.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path('', include('core.urls'))
 ]
 
 if settings.DEBUG == True:
     urlpatterns  += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]

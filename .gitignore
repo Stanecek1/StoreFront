@@ -21,3 +21,5 @@ db.sqlite3
 **/app/.cache/**
 app/.bash_history
 app/*
+/static/
+general.log
