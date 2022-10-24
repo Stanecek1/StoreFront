@@ -10,7 +10,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['stanecekbuy-prod.herokuapp.com']
 
-#test
+
 DATABASES = {
     'default': dj_database_url.config()
 }
